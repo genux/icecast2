@@ -186,7 +186,34 @@
         </authentication>
     </mount>
     -->
+<mount type="normal">
+        <mount-name>/radio1</mount-name>
 
+        <username>unix</username>
+        <password>password</password>
+
+        <max-listeners>100</max-listeners>
+        <dump-file>/tmp/radio1.ogg</dump-file>
+        <burst-size>65536</burst-size>
+        <fallback-mount>/radio1.ogg</fallback-mount>
+        <fallback-override>1</fallback-override>
+        <fallback-when-full>1</fallback-when-full>
+        <intro>/radio1_intro.ogg</intro>
+        <hidden>1</hidden>
+        <public>1</public>
+        <authentication type="htpasswd">
+                <option name="filename" value="myauth"/>
+                <option name="allow_duplicate_users" value="0"/>
+        </authentication>
+        <http-headers>
+                <header name="Access-Control-Allow-Origin" value="*" />
+                <header name="X-Robots-Tag" value="index, noarchive" />
+                <header name="foo" value="bar" status="200" />
+                <header name="error" value="failed" status="404" />
+        </http-headers>
+        <on-connect>/home/icecast/bin/stream-start</on-connect>
+        <on-disconnect>/home/icecast/bin/stream-stop</on-disconnect>
+    </mount>
     <fileserve>1</fileserve>
 
     <paths>
